@@ -12,7 +12,7 @@
 <meta name="description" content="This is some kind of awesome description about the best page in the world">
 <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 </head>
-<body>
+<body ng-app="atoz" ng-controller="atozController">
 <div class="page">
   <header class="rd-navbar-wrap">
     <nav data-layout="rd-navbar-fixed" data-focus-on-hover="false" data-sm-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static" data-lg-device-layout="rd-navbar-static" data-lg-stick-up="true" data-md-stick-up-offset="157px" data-lg-stick-up-offset="157px" class="rd-navbar rd-navbar-default">
@@ -318,32 +318,48 @@
               <div class="calculator-wrap bg-white">
                 <h2>EMI Calculater</h2>
                 <hr class="divider bg-primary divider-left">
-                <form class="form-calculator">
+                <form class="form-calculator" ng-submit="submit()">
                   <div class="form-group-multiple">
                     <div class="form-group">
-                      <label for="residual-value" class="form-label-outside">Principal</label>
-                      <input id="residual-value" class="form-input" type="text">
-                    </div>
-                  </div>
-                  <div class="form-group-multiple">
-                    <div class="form-group">
-                      <label for="number-of-months" class="form-label-outside">Rate</label>
-                      <input id="number-of-months" value="7.5" class="form-input" type="text">
+                      <label for="principal" class="form-label-outside">Principal</label>
+                      <input ng-model="principal" id="principal" class="form-input" type="text">
                     </div>
                   </div>
                   <div class="form-group-multiple">
                     <div class="form-group">
-                      <label for="interest-amount" class="form-label-outside">Duration</label>
-                      <input id="interest-amount" class="form-input" type="text">
+                      <label for="rate" class="form-label-outside">Rate</label>
+                      <input ng-model="rate" id="rate" value="7.5" class="form-input" type="text">
                     </div>
                   </div>
                   <div class="form-group-multiple">
-                    <div class="form-group form-calculator-total">
-                      <label for="total-payment" class="form-label-outside">Month/Year</label>
-                      <input id="total-payment" class="form-input" type="text">
+                    <div class="form-group">
+                      <label for="duration" class="form-label-outside">Duration</label>
+                      <input ng-model="duration" id="duration" class="form-input" type="text">
                     </div>
                   </div>
+                  <div class="form-group-multiple">
+                    <div class="form-group">
+                      <label for="monthOrYear" class="form-label-outside">Month/Year</label>
+                      <select ng-model="monthOrYear" id="monthOrYear" class="form-input">
+                        <option value="YEAR">Year</option>
+                        <option value="MONTH">Month</option>
+                      </select>
+                    </div>
+                  </div>
+                   <div class="form-group-multiple">
+                    <div class="form-group">
+                      <button class="btn btn-primary" ng-click="emi()">Submit</button>
+                    </div>
+                  </div>
+                  <!-- <div class="form-group-multiple">
+                  	<h1>EMI Per Month </h1>
+                  	<h1>{{emiResponse.emi}}</h1>
+               	  </div> -->
                 </form>
+                <span ng-if="emiResponse" class="animate-if">
+  					<h1>EMI : {{emiResponse.emi}}</h1>
+				</span>
+                
               </div>
             </div>
             <div class="cell-lg-5 veil reveal-lg-inline-block"> <img src="images/home-2-552x654.png" alt="" style="margin-top:-100px" width="552" height="654"> </div>
@@ -352,6 +368,8 @@
       </div>
     </div>
   </section>
+
+
   <section class="section bg-white section-md">
     <div class="shell text-center">
       <h2>Testimonials</h2>
@@ -509,5 +527,7 @@
 <div id="form-output-global" class="snackbars"></div>
 <script src="js/core.min.js"></script> 
 <script src="js/script.js"></script>
+<script src="js/angular.min.js"></script>
+<script src="controllers/Controller.js"></script>
 </body>
 </html>
