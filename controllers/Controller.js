@@ -15,6 +15,42 @@ $scope.emi = function(){
   });  
 };
 
+$scope.bankDetail = function(){
+	$http.get('http://127.0.0.1:8080/v1/fetchBankDetail').success(function(response){
+    $scope.bankResponse = response;
+    console.log(response);
+  });
+};
+
+$scope.stateDetail = function(bankId){
+	$http.get('http://127.0.0.1:8080/v1/fetchBankDetail?bankId='+bankId).success(function(response){
+    $scope.stateResponse = response;
+    console.log(response);
+  });
+};
+
+$scope.districtDetail = function(bankId,stateId){
+	$http.get('http://127.0.0.1:8080/v1/fetchBankDetail?bankId='+bankId+'&stateId='+stateId).success(function(response){
+    $scope.districtResponse = response;
+    console.log(response);
+  });
+};
+
+$scope.cityDetail = function(bankId,stateId,districtId){
+	$http.get('http://127.0.0.1:8080/v1/fetchBankDetail?bankId='+bankId+'&stateId='+stateId+'&districtId='+districtId).success(function(response){
+    $scope.cityResponse = response;
+    console.log(response);
+  });
+};
+
+$scope.branchDetail = function(bankId,stateId,districtId,cityId){
+	$http.get('http://127.0.0.1:8080/v1/fetchBankDetail?bankId='+bankId+'&stateId='+stateId+'&districtId='+districtId+'&cityId='+cityId).success(function(response){
+    $scope.branchResponse = response;
+    console.log(response);
+  });
+};
+
+
 // var refresh = function(){
 //   $http.get('/contactlist').success(function(response){
 //     $scope.contactlist = response;

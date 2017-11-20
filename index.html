@@ -256,48 +256,54 @@
                 <form class="form-calculator">
                   <div class="form-group-multiple">
                     <div class="form-group">
-                      <label for="loan-amount" class="form-label-outside">Bank</label>
-                      <select class="form-input">
-                        <option value="select">Select Bank</option>
-                        <option value="volvo">Volvo</option>
-                        <option value="mercedes">Mercedes</option>
-                        <option value="audi">Audi</option>
+                      <label for="loan-amount" class="form-label-outside" ng-init="bankDetail()" >Bank</label>
+                      <select ng-model="bankId" class="form-input" >
+                          <option ng-repeat="x in bankResponse" value="{{x.id}}">{{x.name}}</option>
                       </select>
                     </div>
                   </div>
                   <div class="form-group-multiple">
                     <div class="form-group">
                       <label for="number-of-months" class="form-label-outside">State</label>
-                      <select class="form-input">
-                        <option value="select">Select State</option>
+                      <select ng-model="stateId" ng-click="stateDetail(bankId)"  class="form-input">
+                        <option ng-repeat="x in stateResponse" value="{{x.id}}">{{x.name}}</option>
                       </select>
                     </div>
                   </div>
                   <div class="form-group-multiple">
                     <div class="form-group">
                       <label for="interest-amount" class="form-label-outside">District</label>
-                      <select class="form-input">
-                        <option value="select">Select District</option>
+                      <select ng-model="districtId" ng-click="districtDetail(bankId,stateId)" class="form-input">
+                        <option ng-repeat="x in districtResponse" value="{{x.id}}">{{x.name}}</option>
                       </select>
                     </div>
                   </div>
                   <div class="form-group-multiple">
                     <div class="form-group">
                       <label for="interest-amount" class="form-label-outside">City</label>
-                      <select class="form-input">
-                        <option value="select">Select city</option>
+                      <select ng-model="cityId" ng-click="cityDetail(bankId,stateId,districtId)" class="form-input">
+                        <option ng-repeat="x in cityResponse" value="{{x.id}}">{{x.name}}</option>
                       </select>
                     </div>
                   </div>
                   <div class="form-group-multiple">
                     <div class="form-group">
                       <label for="interest-amount" class="form-label-outside">Branch</label>
-                      <select class="form-input">
-                        <option value="select">Select branch</option>
+                      <select ng-model="branchData" ng-click="branchDetail(bankId,stateId,districtId,cityId)" class="form-input">
+                        <option ng-repeat="x in branchResponse" value="{{x}}">{{x.branch}}</option>
                       </select>
                     </div>
                   </div>
                 </form>
+
+                <span ng-if="branchData" class="animate-if">
+                  <h1>{{branchData}}</h1>
+                  <h1>IFSC : {{branchData.ifsc}}</h1>
+                  <h1>Branch : {{branchData.branch}}</h1>
+                  <h1>MicrCode : {{branchData.micrCode}}</h1>
+                  <h1>Address : {{branchData.address}}</h1>
+                </span>
+
               </div>
             </div>
             <div class="cell-lg-5 veil reveal-lg-inline-block"> <img src="images/home-2-552x654.png" alt="" style="margin-top:-100px" width="552" height="654"> </div>
