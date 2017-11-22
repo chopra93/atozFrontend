@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,maximum-scale=1,user-scalable=0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta charset="utf-8">
-<link rel="stylesheet" type="text/css" href="css/css.css?family=Roboto:100,300,400,500,700,900,300italic">
+<link rel="stylesheet" type="text/css" href="css/css.css">
 <link rel="stylesheet" href="css/style.css">
 <meta name="keywords" content="business, financial">
 <meta name="description" content="This is some kind of awesome description about the best page in the world">
@@ -15,7 +15,9 @@
 <body ng-app="atoz" ng-controller="atozController">
 <div class="page">
   <header class="rd-navbar-wrap">
-    <nav data-layout="rd-navbar-fixed" data-focus-on-hover="false" data-sm-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static" data-lg-device-layout="rd-navbar-static" data-lg-stick-up="true" data-md-stick-up-offset="157px" data-lg-stick-up-offset="157px" class="rd-navbar rd-navbar-default">
+    
+    <nav data-layout="rd-navbar-fixed" data-focus-on-hover="true" data-sm-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static" data-lg-device-layout="rd-navbar-static" data-lg-stick-up="true" data-md-stick-up-offset="157px" data-lg-stick-up-offset="157px" class="rd-navbar rd-navbar-default">
+      
       <div class="rd-navbar-inner">
         <div class="rd-navbar-panel">
           <button data-rd-navbar-toggle=".rd-navbar-nav-wrap" class="rd-navbar-toggle"> <span></span> </button>
@@ -92,7 +94,7 @@
   </header>
   <section data-min-height="500px" data-height="29.84%" class="swiper-container swiper-slider">
     <div class="swiper-wrapper">
-      <div class="swiper-slide" data-slide-bg="images/home-slide-2.jpg">
+      <div class="swiper-slide" data-slide-bg="images/home1.jpg">
         <div class="swiper-slide-caption">
           <section class="section-70">
             <div class="shell text-center text-md-left">
@@ -104,7 +106,7 @@
           </section>
         </div>
       </div>
-      <div class="swiper-slide" data-slide-bg="images/home-slide-1.jpg">
+      <div class="swiper-slide" data-slide-bg="../images/home1.jpg">
         <div class="swiper-slide-caption">
           <section class="section-70">
             <div class="shell text-center text-md-left">
@@ -257,53 +259,60 @@
                   <div class="form-group-multiple">
                     <div class="form-group">
                       <label for="loan-amount" class="form-label-outside" ng-init="bankDetail()" >Bank</label>
-                      <select ng-model="bankId" class="form-input" >
+                      <select ng-model="bankId" ng-change="stateDetail(bankId)" class="form-input" >
                           <option ng-repeat="x in bankResponse" value="{{x.id}}">{{x.name}}</option>
                       </select>
                     </div>
                   </div>
+                  <!-- <div ng-if="bankId" ng-init="stateDetail(bankId)"></div> -->
                   <div class="form-group-multiple">
                     <div class="form-group">
                       <label for="number-of-months" class="form-label-outside">State</label>
-                      <select ng-model="stateId" ng-click="stateDetail(bankId)"  class="form-input">
+                      <select ng-model="stateId" ng-change="districtDetail(bankId,stateId)" class="form-input">
                         <option ng-repeat="x in stateResponse" value="{{x.id}}">{{x.name}}</option>
                       </select>
                     </div>
                   </div>
+                  <!-- <div ng-if="stateId" ng-init="districtDetail(bankId,stateId)"></div> -->
                   <div class="form-group-multiple">
                     <div class="form-group">
                       <label for="interest-amount" class="form-label-outside">District</label>
-                      <select ng-model="districtId" ng-click="districtDetail(bankId,stateId)" class="form-input">
+                      <select ng-model="districtId" ng-change="cityDetail(bankId,stateId,districtId)" class="form-input">
                         <option ng-repeat="x in districtResponse" value="{{x.id}}">{{x.name}}</option>
                       </select>
                     </div>
                   </div>
+                  <!-- <div ng-if="districtId" ng-init="cityDetail(bankId,stateId,districtId)"></div> -->
                   <div class="form-group-multiple">
                     <div class="form-group">
                       <label for="interest-amount" class="form-label-outside">City</label>
-                      <select ng-model="cityId" ng-click="cityDetail(bankId,stateId,districtId)" class="form-input">
+                      <select ng-model="cityId"  ng-change="branchDetail(bankId,stateId,districtId,cityId)" class="form-input">
                         <option ng-repeat="x in cityResponse" value="{{x.id}}">{{x.name}}</option>
                       </select>
                     </div>
                   </div>
+                  <!-- <div ng-if="cityId" ng-init="branchDetail(bankId,stateId,districtId,cityId)"></div> -->
                   <div class="form-group-multiple">
                     <div class="form-group">
                       <label for="interest-amount" class="form-label-outside">Branch</label>
-                      <select ng-model="branchData" ng-click="branchDetail(bankId,stateId,districtId,cityId)" class="form-input">
-                        <option ng-repeat="x in branchResponse" value="{{x}}">{{x.branch}}</option>
+                      <select ng-model="branchData"  ng-options="type.branch for type in branchResponse" class="form-input">
+                        <option value="">{{type.name}}</option>
                       </select>
                     </div>
                   </div>
                 </form>
-
-                <span ng-if="branchData" class="animate-if">
-                  <h1>{{branchData}}</h1>
-                  <h1>IFSC : {{branchData.ifsc}}</h1>
-                  <h1>Branch : {{branchData.branch}}</h1>
-                  <h1>MicrCode : {{branchData.micrCode}}</h1>
-                  <h1>Address : {{branchData.address}}</h1>
-                </span>
-
+                <br><br>
+                <ul ng-if="branchData" class="animate-if" class="list-group">
+                  <li class="list-group-item active">Branch Detail</li>
+                  <li class="list-group-item">IFSC : <h4><p class="mb-1">{{branchData.ifsc}}</p></h4></li>
+                  <li class="list-group-item">Branch : <h4><p class="mb-1">{{branchData.branch}}</p></h4></li>
+                  <li class="list-group-item">MicrCode : <h4><p class="mb-1">{{branchData.micrCode}}</p></h4></li>
+                  <li class="list-group-item">Address : <h4><p class="mb-1">{{branchData.address}}</p></h4></li>
+                </ul>
+                <br>
+                <ul class="list-group">
+                  <li class="list-group-item list-group-item-danger">The data is processed from RBI site for your convenience</li>
+                </ul>
               </div>
             </div>
             <div class="cell-lg-5 veil reveal-lg-inline-block"> <img src="images/home-2-552x654.png" alt="" style="margin-top:-100px" width="552" height="654"> </div>
@@ -314,7 +323,7 @@
   </section>
   
 
-
+  <br><br><br>
   <section class="section section-md bg-white">
     <div class="section-calculator-wrap">
       <div class="bg-athens-gray section-relative section-calculator">
@@ -357,14 +366,10 @@
                       <button class="btn btn-primary" ng-click="emi()">Submit</button>
                     </div>
                   </div>
-                  <!-- <div class="form-group-multiple">
-                  	<h1>EMI Per Month </h1>
-                  	<h1>{{emiResponse.emi}}</h1>
-               	  </div> -->
                 </form>
                 <span ng-if="emiResponse" class="animate-if">
-  					<h1>EMI : {{emiResponse.emi}}</h1>
-				</span>
+  				      	<h1>EMI : {{emiResponse.emi}}</h1>
+			       	 </span>
                 
               </div>
             </div>
