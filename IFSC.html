@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="wide wow-animation" lang="en">
 <head>
-<title>Finance</title>
+<title>IFSC</title>
 <meta name="format-detection" content="telephone=no">
 <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,maximum-scale=1,user-scalable=0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -75,200 +75,179 @@
     </div>
   </header>
 
-<section data-min-height="500px" data-height="29.84%" class="swiper-container swiper-slider">
-  <div class="swiper-wrapper">
-    <div class="swiper-slide">
-        <div class="swiper-slide-caption">
-          <section class="section-70">
-            <div class="shell text-center text-md-left">
-              <img class="d-block img-fluid" src="images/home1.jpg" alt="First slide">
-              <div class="carousel-caption d-none d-md-block">
-                <h1 class="swiper-slide-title">Instant Loan Approval</h1>
-                <h4 class="swiper-slide-subtitle veil reveal-sm-block">Apply for loan and get best offer from leading banks or bank of your choice</h4>
+  <br><br><br><br><br><br><br><br><br>
+  <section id="ifsc" class="section section-md bg-white">
+    <div class="section-calculator-wrap">
+      <div class="bg-athens-gray section-relative section-calculator">
+        <div class="shell">
+          <div class="range range-condensed range-xs-center">
+            <div class="cell-sm-8 cell-lg-7 section-relative">
+              <div class="calculator-wrap bg-white">
+                <h2>IFSC Finder</h2>
+                <hr class="divider bg-primary divider-left">
+                <form class="form-calculator">
+                  <div class="form-group-multiple">
+                    <div class="form-group">
+                      <label for="loan-amount" class="form-label-outside" ng-init="bankDetail()" >Bank</label>
+                      <select ng-model="bankId" ng-change="stateDetail(bankId)" class="form-input" >
+                          <option ng-repeat="x in bankResponse" value="{{x.id}}">{{x.name}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <!-- <div ng-if="bankId" ng-init="stateDetail(bankId)"></div> -->
+                  <div class="form-group-multiple">
+                    <div class="form-group">
+                      <label for="number-of-months" class="form-label-outside">State</label>
+                      <select ng-model="stateId" ng-change="districtDetail(bankId,stateId)" class="form-input">
+                        <option ng-repeat="x in stateResponse" value="{{x.id}}">{{x.name}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <!-- <div ng-if="stateId" ng-init="districtDetail(bankId,stateId)"></div> -->
+                  <div class="form-group-multiple">
+                    <div class="form-group">
+                      <label for="interest-amount" class="form-label-outside">District</label>
+                      <select ng-model="districtId" ng-change="cityDetail(bankId,stateId,districtId)" class="form-input">
+                        <option ng-repeat="x in districtResponse" value="{{x.id}}">{{x.name}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <!-- <div ng-if="districtId" ng-init="cityDetail(bankId,stateId,districtId)"></div> -->
+                  <div class="form-group-multiple">
+                    <div class="form-group">
+                      <label for="interest-amount" class="form-label-outside">City</label>
+                      <select ng-model="cityId"  ng-change="branchDetail(bankId,stateId,districtId,cityId)" class="form-input">
+                        <option ng-repeat="x in cityResponse" value="{{x.id}}">{{x.name}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <!-- <div ng-if="cityId" ng-init="branchDetail(bankId,stateId,districtId,cityId)"></div> -->
+                  <div class="form-group-multiple">
+                    <div class="form-group">
+                      <label for="interest-amount" class="form-label-outside">Branch</label>
+                      <select ng-model="branchData"  ng-options="type.branch for type in branchResponse" class="form-input">
+                        <option value="">{{type.name}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </form>
+                <br><br>
+                <ul ng-if="branchData" class="animate-if" class="list-group">
+                  <li class="list-group-item active">Branch Detail</li>
+                  <li class="list-group-item">IFSC : <h4><p class="mb-1">{{branchData.ifsc}}</p></h4></li>
+                  <li class="list-group-item">Branch : <h4><p class="mb-1">{{branchData.branch}}</p></h4></li>
+                  <li class="list-group-item">MicrCode : <h4><p class="mb-1">{{branchData.micrCode}}</p></h4></li>
+                  <li class="list-group-item">Address : <h4><p class="mb-1">{{branchData.address}}</p></h4></li>
+                </ul>
+                <br>
+                <ul class="list-group">
+                  <li class="list-group-item list-group-item-danger">The data is processed from RBI site for your convenience</li>
+                </ul>
               </div>
             </div>
-          </section>
+            <div class="cell-lg-5 veil reveal-lg-inline-block"> <img src="images/home-2-552x654.png" alt="" style="margin-top:-100px" width="552" height="654"> </div>
+          </div>
         </div>
+      </div>
     </div>
-  <!-- second slide-->
-    <div class="swiper-slide">
-        <div class="swiper-slide-caption">
-          <section class="section-70">
-            <div class="shell text-center text-md-left">
-              <img class="d-block img-fluid" src="images/home2.jpg" alt="First slide">
-              <div class="carousel-caption d-none d-md-block">
-                <h1 class="swiper-slide-title">Financial Calculator</h1>
-                <h4 class="swiper-slide-subtitle veil reveal-sm-block">Check EMI, FD, RD maturity amount depending on compounding frequency</h4>
+  </section>
+  <br><br><br><br><br><br><br><br><br><br><br><br>
+
+  <br><br><br><br><br><br><br><br><br>
+  <section id="pincode" class="section section-md bg-white">
+    <div class="section-calculator-wrap">
+      <div class="bg-athens-gray section-relative section-calculator">
+        <div class="shell">
+          <div class="range range-condensed range-xs-center">
+            <div class="cell-sm-8 cell-lg-7 section-relative">
+              <div class="calculator-wrap bg-white">
+                <h2>State and City Finder Based On pincode</h2>
+                <hr class="divider bg-primary divider-left">
+                <form class="form-calculator">
+                  <div class="form-group-multiple">
+                    <div class="form-group">
+                      <label for="pincode" class="form-label-outside">Pincode</label>
+                      <input ng-model="pincode" ng-change="pincodeDetail(pincode)" id="pincode" class="form-input" type="text">
+                    </div>
+                  </div>
+                </form>
+                <br><br>
+                <ul ng-if="pincodeResponse" class="animate-if" class="list-group">
+                  <li class="list-group-item active">Pincode Information</li>
+                  <li class="list-group-item">Pincode : <h4><p class="mb-1">{{pincode}}</p></h4></li>
+                  <li class="list-group-item">State : <h4><p class="mb-1">{{pincodeResponse.state}}</p></h4></li>
+                  <li class="list-group-item">City : <h4><p class="mb-1">{{pincodeResponse.city}}</p></h4></li>
+                </ul>
+                <br>
               </div>
             </div>
-          </section>
-        </div>
-    </div>
-  </div>
-  <div class="swiper-pagination"></div>
-    <div class="swiper-nav">
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
-  </div>
-</section>
-
-  <!-- <section data-min-height="500px" data-height="29.84%" class="swiper-container swiper-slider">
-    <div class="swiper-wrapper">
-      
-      <div class="swiper-slide" data-slide-bg="images/home1.jpg">
-        <div class="swiper-slide-caption">
-          <section class="section-70">
-            <div class="shell text-center text-md-left">
-              <h1 class="swiper-slide-title">Instant Loan Approval</h1>
-			  <h4 class="swiper-slide-subtitle veil reveal-sm-block"> Apply for loan and get best offer from leading banks or bank of your choice</h4>
-              <div class="group group-md"> <a class="button button-sm button-primary-filled veil reveal-sm-inline-block" href="about-us.html">Learn More</a> <a class="button button-sm button-default" href="our-services.html">Our Services</a> </div>
-            </div>
-          </section>
+            <div class="cell-lg-5 veil reveal-lg-inline-block"> <img src="images/home-2-552x654.png" alt="" style="margin-top:-100px" width="552" height="654"> </div>
+          </div>
         </div>
       </div>
+    </div>
+  </section>
+  <br><br><br><br><br><br><br><br><br><br><br><br>
 
-      <div class="swiper-slide" data-slide-bg="../images/home1.jpg">
-        <div class="swiper-slide-caption">
-          <section class="section-70">
-            <div class="shell text-center text-md-left">
-              <h1 class="swiper-slide-title">Best of   BusinessPlanning <br>
-                Advisors & Specialists </h1>
-              <h4 class="swiper-slide-subtitle veil reveal-sm-block"> We look forward to getting to know you and to <br class="veil reveal-sm-block">
-                helping you take your company to new heights! </h4>
-              <div class="group group-md"> <a class="button button-sm button-primary-filled veil reveal-sm-inline-block" href="our-services.html">Our Services</a> <a class="button button-sm button-default" href="#">Purchase now</a> </div>
+  <!-- <br><br><br>
+  <section class="section section-md bg-white">
+    <div class="section-calculator-wrap">
+      <div class="bg-athens-gray section-relative section-calculator">
+        <div class="shell">
+          <div class="range range-condensed range-xs-center">
+            <div class="cell-sm-8 cell-lg-7 section-relative">
+              <div class="calculator-wrap bg-white">
+                <h2>EMI Calculater</h2>
+                <hr class="divider bg-primary divider-left">
+                <form class="form-calculator" ng-submit="submit()">
+                  <div class="form-group-multiple">
+                    <div class="form-group">
+                      <label for="principal" class="form-label-outside">Principal</label>
+                      <input ng-model="principal" id="principal" class="form-input" type="text">
+                    </div>
+                  </div>
+                  <div class="form-group-multiple">
+                    <div class="form-group">
+                      <label for="rate" class="form-label-outside">Rate</label>
+                      <input ng-model="rate" id="rate" value="7.5" class="form-input" type="text">
+                    </div>
+                  </div>
+                  <div class="form-group-multiple">
+                    <div class="form-group">
+                      <label for="duration" class="form-label-outside">Duration</label>
+                      <input ng-model="duration" id="duration" class="form-input" type="text">
+                    </div>
+                  </div>
+                  <div class="form-group-multiple">
+                    <div class="form-group">
+                      <label for="monthOrYear" class="form-label-outside">Month/Year</label>
+                      <select ng-model="monthOrYear" id="monthOrYear" class="form-input">
+                        <option value="YEAR">Year</option>
+                        <option value="MONTH">Month</option>
+                      </select>
+                    </div>
+                  </div>
+                   <div class="form-group-multiple">
+                    <div class="form-group">
+                      <button class="btn btn-primary" ng-click="emi()">Submit</button>
+                    </div>
+                  </div>
+                </form>
+                <span ng-if="emiResponse" class="animate-if">
+  				      	<h1>EMI : {{emiResponse.emi}}</h1>
+			       	 </span>
+                
+              </div>
             </div>
-          </section>
+            <div class="cell-lg-5 veil reveal-lg-inline-block"> <img src="images/home-2-552x654.png" alt="" style="margin-top:-100px" width="552" height="654"> </div>
+          </div>
         </div>
       </div>
-
-    </div>
-    <div class="swiper-pagination"></div>
-    <div class="swiper-nav">
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
     </div>
   </section> -->
 
-  <section class="section section-lg bg-white">
-    <div class="shell">
-      <div class="range range-sm-center range-50">
-        <div class="cell-sm-5 cell-lg-3">
-          <div class="service text-center inset-lg-left-30 inset-lg-right-30">
-            <div class="icon-wrap"> <img src="images/icon-wallet-45x45.png" alt="" class="img-responsive" width="45" height="45"> </div>
-            <h4> <a href="our-services.html">Risk Management</a> </h4>
-            <p>Risk management is intended to manage financial and other losses associated with risks to your assets or business.</p>
-          </div>
-        </div>
-        <div class="cell-sm-5 cell-lg-3">
-          <div class="service text-center inset-lg-left-30 inset-lg-right-30">
-            <div class="icon-wrap"> <img src="images/icon-coffe-45x45.png" alt="" class="img-responsive" width="45" height="45"> </div>
-            <h4> <a href="our-services.html">Retirement Planning</a> </h4>
-            <p>Use our strategies and retirement advice, including retirement calculators to help you retire faster.</p>
-          </div>
-        </div>
-        <div class="cell-sm-5 cell-lg-3">
-          <div class="service text-center inset-lg-left-30 inset-lg-right-30">
-            <div class="icon-wrap"> <img src="images/icon-business-45x45.png" alt="" class="img-responsive" width="45" height="45"> </div>
-            <h4> <a href="our-services.html">Financial Planning</a> </h4>
-            <p>We'll help you make sensible decisions about money that can help you achieve your goals in life.</p>
-          </div>
-        </div>
-        <div class="cell-sm-5 cell-lg-3">
-          <div class="service text-center inset-lg-left-30 inset-lg-right-30">
-            <div class="icon-wrap"> <img src="images/icon-case-45x45.png" alt="" class="img-responsive" width="45" height="45"> </div>
-            <h4> <a href="our-services.html">Taxation</a> </h4>
-            <p>Tax planning considers the tax implications of business decisions, usually with the goal of minimizing tax liability.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="section section-md bg-image bg-primary bg-fixed" style="background-image: url(images/bg-02-1920x1200.jpg)">
-    <div class="shell text-center text-lg-left">
-      <h2 class="reveal-inline-block text-middle">What We Do</h2>
-      <hr class="divider divider-vertical bg-white text-middle veil reveal-lg-inline-block">
-      <h4 class="text-light reveal-lg-inline-block text-middle inset-lg-right-60">We provide expert financial advice for businesses and individuals</h4>
-      <a href="our-services.html" class="button button-sm button-primary-filled text-middle">See All Services</a> </div>
-  </section>
-  <section class="bg-white section section-md">
-    <div class="shell text-center">
-      <h2>About Us</h2>
-      <hr class="divider bg-primary">
-      <div class="range range-xs-center range-50">
-        <div class="cell-md-7 cell-lg-6">
-          <div class="tabs-custom">
-            <ul class="nav nav-tabs">
-              <li class="active"> <a data-toggle="tab" href="#tab1">Facts</a> </li>
-              <li> <a data-toggle="tab" href="#tab2">Advantages</a> </li>
-              <li> <a data-toggle="tab" href="#tab3">Skills</a> </li>
-            </ul>
-            <div class="tab-content">
-              <div id="tab1" class="tab-pane fade in active">
-                <p class="text-left text-gray-base">Our company is your one stop solution for all needs. There is no doubt that we are the leaders and you don't have to worry about our image because it is pefect.</p>
-                <div class="range range-xs-center counter-wrap">
-                  <div class="cell-sm-4">
-                    <div data-from="0" data-to="275" class="counter"></div>
-                    <p class="counter-desc">Cases completed</p>
-                  </div>
-                  <div class="cell-sm-4">
-                    <div data-from="0" data-to="19" class="counter"></div>
-                    <p class="counter-desc">Consultants</p>
-                  </div>
-                  <div class="cell-sm-4">
-                    <div data-from="0" data-to="130" class="counter"></div>
-                    <p class="counter-desc">Awards won</p>
-                  </div>
-                </div>
-              </div>
-              <div id="tab2" class="tab-pane fade">
-                <p class="text-left text-gray-base">Our company is your one stop solution for all needs. There is no doubt that we are the leaders and you don't have to worry about our image because it is pefect.</p>
-                <div class="range range-xs-center counter-wrap">
-                  <div class="cell-sm-4">
-                    <div data-from="0" data-to="275" class="counter text-primary"></div>
-                    <p class="text-gray-base">Cases completed</p>
-                  </div>
-                  <div class="cell-sm-4">
-                    <div data-from="0" data-to="19" class="counter text-primary"></div>
-                    <p class="text-gray-base">Consultants</p>
-                  </div>
-                  <div class="cell-sm-4">
-                    <div data-from="0" data-to="130" class="counter text-primary"></div>
-                    <p class="text-gray-base">Awards won</p>
-                  </div>
-                </div>
-              </div>
-              <div id="tab3" class="tab-pane fade">
-                <p class="text-left text-gray-base">Our company is your one stop solution for all needs. There is no doubt that we are the leaders and you don't have to worry about our image because it is pefect.</p>
-                <div class="range range-xs-center counter-wrap">
-                  <div class="cell-sm-4">
-                    <div data-from="0" data-to="275" class="counter text-primary"></div>
-                    <p class="text-gray-base">Cases completed</p>
-                  </div>
-                  <div class="cell-sm-4">
-                    <div data-from="0" data-to="19" class="counter text-primary"></div>
-                    <p class="text-gray-base">Consultants</p>
-                  </div>
-                  <div class="cell-sm-4">
-                    <div data-from="0" data-to="130" class="counter text-primary"></div>
-                    <p class="text-gray-base">Awards won</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="cell-md-5 cell-lg-6 text-sm-left">
-          <div class="inset-lg-left-70 inset-lg-right-70">
-            <h4>Doing the right thing, at the right time.</h4>
-            <p>Welcome to the leading company on the market! Our success is driven by the highest quality customer service. We can meet the requirements even of the whimsical clients; there are no complex tasks for us! Thanks for your choice! Our company
-              can boast the reputation of the trusted partner known worldwide. We are proud of the uncompromising quality of services</p>
-            <a href="about-us.html" class="button button-sm button-primary button-thin">Read More</a> </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <section class="section bg-white section-md">
+  <!-- <section class="section bg-white section-md">
     <div class="shell text-center">
       <h2>Testimonials</h2>
       <hr class="divider bg-primary">
@@ -329,8 +308,8 @@
         </ul>
       </div>
     </div>
-  </section>
-  <section class="section section-md bg-alabaster">
+  </section> -->
+  <!-- <section class="section section-md bg-alabaster">
     <div class="shell text-center">
       <div class="range range-30">
         <div class="cell-xs-6 cell-sm-4 cell-lg-2"> <a href="#"> <img src="images/home-7-170x75.png" alt="" class="link-image" width="170" height="75"> </a> </div>
@@ -341,7 +320,7 @@
         <div class="cell-xs-6 cell-sm-4 cell-lg-2"> <a href="#"> <img src="images/home-12-170x75.png" alt="" class="link-image" width="170" height="75"> </a> </div>
       </div>
     </div>
-  </section>
+  </section> -->
   <footer class="page-footer bg-ebony-clay">
     <div class="section section-md bg-bright-gray">
       <div class="shell text-left">
