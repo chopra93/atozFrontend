@@ -2097,10 +2097,10 @@ pre code {
 }
 
 .container {
-    margin-right: auto;
+    margin-right: 0px;
     margin-left: auto;
     padding-left: 0px;
-    padding-right: 0px
+    padding-right: 0px;
 }
 
 .container:before,
